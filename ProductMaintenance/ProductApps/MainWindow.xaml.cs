@@ -29,7 +29,7 @@ namespace ProductApps
         private void calculateButton_Click(object sender, RoutedEventArgs e)
         {
             int quantity;
-            double price, totalPayment, totalCharge, totalChargeAfterWrap;
+            double price, totalPayment, totalCharge, totalChargeAfterWrap, totalChargeAfterGST;
             try
             {
                 cProduct = new Product(Convert.ToDecimal(priceTextBox.Text), Convert.ToInt16(quantityTextBox.Text));
@@ -47,13 +47,17 @@ namespace ProductApps
             totalPayment = price * quantity;
             totalPaymentTextBlock.Text = totalPayment.ToString("F2");
 
-            //Calc total charge
+            // Calc total charge
             totalCharge = totalPayment + 25;
             totalChargeTextBlock.Text = totalCharge.ToString("F2");
 
-            //Calc total charge after wrap
+            // Calc total charge after wrap
             totalChargeAfterWrap = totalCharge + 5;
             totalChargeAfterWrapTextBlock.Text = totalChargeAfterWrap.ToString("F2");
+
+            // Calc total charge after GST
+            totalChargeAfterGST = totalChargeAfterWrap * 1.1;
+            totalChargeAfterGSTTextBlock.Text = totalChargeAfterGST.ToString("F2");
         }
 
         private void clearButton_Click(object sender, RoutedEventArgs e)
